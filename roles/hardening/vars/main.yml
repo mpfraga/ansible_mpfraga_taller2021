@@ -1,0 +1,5 @@
+---
+packages: '["mariadb-server", "mariadb", "php", "httpd"]'
+site: prueba
+servername: prueba.lab.ort
+directory: /var/www/html

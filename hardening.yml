@@ -22,7 +22,7 @@
       path: /etc/ssh/sshd_config
       regexp: 'PermitRebootLogin'
       line: "PermiteRootLogin no"
-      insertafter: '^#PermiteRootLogin'
+      insertafter: '^#PermitRootLogin'
     notify: Restart sshd
 
   handlers:
