@@ -1,0 +1,32 @@
+---
+- hosts: linux
+  become: yes
+
+  tasks:
+  - name: Add Ansible Managed line to issue.net
+    lineinfile: 
+      path: /etc/issue.net
+      line: "Server Managed by Ansible. Do not Modify the configuration!"
+      state: present
+
+  - name: Use issue.net as login banner
+    lineinfile:
+      path: "/etc/ssh/sshd_config"
+      line: "Banner /etc/issue.net"
+      regexp: 'Banner '
+      insertafter: '^Banner'
+    notify: Restart sshd
+ 
+  - name: Disallow root login by ssh
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: 'PermitRebootLogin'
+      line: "PermiteRootLogin no"
+      insertafter: '^#PermiteRootLogin'
+    notify: Restart sshd
+
+  handlers:
+  - name: Restart sshd
+    service:
+      name: sshd
+      state: restarted
