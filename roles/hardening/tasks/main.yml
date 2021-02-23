@@ -1,6 +1,4 @@
 ---
-- include_vars: /home/14piar09/ansible_mpfraga_taller2021/roles/hardening/vars/main.yml
-
 - name: Install LAMP Stack
   yum:
     name: "{{ item }}"
@@ -9,7 +7,7 @@
 
 - name: Create VirtualHost Create
   template:
-    src: /home/14piar09/ansible_mpfraga_taller2021/virtualhost.j2
+    src: /home/14piar09/ansible_mpfraga_taller2021/roles/hardening/templates/virtualhost.j2
     dest: /etc/httpd/conf.d/{{ site }}.conf
     mode: 0644
     owner: root

@@ -1,6 +1,4 @@
 ---
-- include_tasks: /home/14piar09/ansible_mpfraga_taller2021/roles/hardening/tasks/main.yml
-
 - name: restart apache
   service: 
     name: httpd
