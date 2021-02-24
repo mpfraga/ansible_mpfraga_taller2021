@@ -3,3 +3,8 @@
   service: 
     name: httpd
     state: restarted
+
+- name: restart firewall
+  service:
+    name: firewalld
+    state: restarted

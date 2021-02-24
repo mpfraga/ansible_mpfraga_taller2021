@@ -14,6 +14,26 @@
     group: root
   notify: restart apache
 
+- name: Create Site directory
+  file: 
+    path: "{{ directory }}"
+    state: directory
+    owner: apache
+    group: apache
+    mode: 0644
+
+- name: Copy index.html
+  copy:
+    src: ./templates/index.html
+    dest: "{{ directory }}/index.html"
+    owner: apache
+    group: apache
+    mode: 0644
+
+- name: Add http to the firewall
+  command: firewall-cmd --add-service=http --permanent
+  notify: restart firewall
+
 - name: Apache Server Started and Enabled
   service:
     name: httpd
